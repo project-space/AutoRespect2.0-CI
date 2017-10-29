@@ -1,6 +1,9 @@
-﻿open System
+﻿open AutoRespect.CI.Consul
+open AutoRespect.CI.Utils
 
 [<EntryPoint>]
 let main argv =
-    printfn "Hello World from F#!"
-    0 // return an integer exit code
+    ``install-consul``() |> ignore
+    ``remove-temp-directory``()
+
+    0 
