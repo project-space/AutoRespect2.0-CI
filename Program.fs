@@ -1,9 +1,7 @@
 ﻿open AutoRespect.CI.Consul
-open AutoRespect.CI.Utils
 
 [<EntryPoint>]
-let main argv =
-    ``install-consul``() |> ignore
-    ``remove-temp-directory``()
+let main argv =   
+    ``install-consul``()
 
     0 

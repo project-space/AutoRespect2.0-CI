@@ -1,38 +1,23 @@
-namespace AutoRespect.CI.Consul
+namespace AutoRespect.CI
 
-    [<AutoOpenAttribute>]
     module Consul =
-        open System
-        open System.IO.Compression
-        open AutoRespect.CI.Utils.Network
-        open AutoRespect.CI.Utils.FileSystem
+        open AutoRespect.CI.Common.Config.Consul
+        open AutoRespect.CI.Common.CommandLine
+        open AutoRespect.CI.Common.Tools
 
-        let private ``download-consul`` () =
-            let ``consul-1.0.0-windows-x64-url`` = "https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_windows_amd64.zip?_ga=2.90675027.879255611.1509304178-525967340.1509304178";
-            let ``file-name`` = "consul-1.0.0-windows-x64.zip"
-            let ``download-path`` = AppDomain.CurrentDomain.BaseDirectory + @"temp\";
-            let destination = ``download-path`` + ``file-name``
+        let private ``run-under-agent`` action =
+            let consul = run (Consul + " agent -dev")
+            action()
+              
+            match consul.HasExited with
+                | false -> consul.Kill()
+                | true  -> ()
+                
+        let private ``import-settings`` () =
+            let proc = run ("Get-Content " + KV + " | " + Consul + " kv import -")
 
-            ``ensure-directory`` ``download-path``
-            ``remove-file`` destination
-
-            ``download-file`` ``consul-1.0.0-windows-x64-url`` destination
-
-            destination
-            
-        let private ``unzip-consul`` (``path-to-zip``) =
-            let ``extract-path`` = AppDomain.CurrentDomain.BaseDirectory + "./tools/"
-            let ``consul-executable`` = (``extract-path`` + "consul.exe")
-
-            ``ensure-directory`` ``extract-path``
-            ``remove-file`` ``consul-executable``
-
-            ZipFile.ExtractToDirectory(``path-to-zip``, ``extract-path``)
-
-            ``consul-executable``
+            proc.WaitForExit()
 
         let public ``install-consul`` () =
-            let ``path-to-zip`` = ``download-consul``()
-            let ``consul-executable`` = ``unzip-consul`` ``path-to-zip``
-
-            ``consul-executable``
+            ``run-under-agent`` ``import-settings``
+            ()

@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Utils.fs" />
-    <Compile Include="Consul.fs" />
+    <Compile Include="Common.fs" />
+    <Compile Include="Consul.fs" />    
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>
