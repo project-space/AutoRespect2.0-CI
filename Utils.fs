@@ -1,5 +1,18 @@
 namespace AutoRespect.CI.Utils
 
+    module CommandLine =
+        open System.Diagnostics
+
+        let run command =
+            let powerShellProcess = new Process() 
+            powerShellProcess.StartInfo.FileName <- @"%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"
+            powerShellProcess.StartInfo.RedirectStandardOutput <- true
+            powerShellProcess.StartInfo.Arguments <- command
+
+            powerShellProcess.Start() |> ignore
+            powerShellProcess.WaitForExit()
+            powerShellProcess.StandardOutput.ReadToEnd()
+
     module Network =
         open System
         open System.Net
