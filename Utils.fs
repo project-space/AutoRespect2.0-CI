@@ -1,6 +1,13 @@
 namespace AutoRespect.CI.Utils
 
-    [<AutoOpenAttribute>]
+    module Network =
+        open System
+        open System.Net
+        let private http = new WebClient()
+
+        let ``download-file`` uri ``file-name`` =
+            http.DownloadFile(Uri(uri), ``file-name``)
+
     module FileSystem =
         open System
         open System.IO
