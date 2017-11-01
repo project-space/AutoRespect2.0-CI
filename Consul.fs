@@ -3,9 +3,9 @@ namespace AutoRespect.CI.Consul
     [<AutoOpenAttribute>]
     module Consul =
         open System
-        open System.Net
         open System.IO.Compression
-        open AutoRespect.CI.Utils
+        open AutoRespect.CI.Utils.Network
+        open AutoRespect.CI.Utils.FileSystem
 
         let private ``download-consul`` () =
             let ``consul-1.0.0-windows-x64-url`` = "https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_windows_amd64.zip?_ga=2.90675027.879255611.1509304178-525967340.1509304178";
@@ -16,8 +16,7 @@ namespace AutoRespect.CI.Consul
             ``ensure-directory`` ``download-path``
             ``remove-file`` destination
 
-            let client = new WebClient()
-            let response = client.DownloadFile(Uri(``consul-1.0.0-windows-x64-url``), destination);
+            ``download-file`` ``consul-1.0.0-windows-x64-url`` destination
 
             destination
             
