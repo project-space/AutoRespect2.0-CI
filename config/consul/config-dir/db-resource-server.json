@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "resource-server",
+        "tags": ["database"],
+        "port": 80
+    }
+}

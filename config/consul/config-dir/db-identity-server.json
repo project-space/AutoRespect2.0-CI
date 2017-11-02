@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "identity-server",
+        "tags": ["database"],
+        "port": 80
+    }
+}
