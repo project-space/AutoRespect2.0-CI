@@ -1,7 +1,7 @@
 {
     "service": {
-        "name": "resource-server",
+        "name": "db-resource-server",
         "tags": ["database"],
-        "port": 80
+        "address": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=AutoRespect.ResourceServer;Integrated Security=SSPI;"
     }
 }

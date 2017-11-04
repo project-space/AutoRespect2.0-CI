@@ -1,0 +1,18 @@
+{
+    "datacenter" : "HOME",
+    "bind_addr" : "127.0.0.1",
+    "data_dir" : "../../config/consul/data-dir/",
+    "node_name" : "server-1",
+    "encrypt" : "OLoX4AjsJ9JI/ZGvgZ5KMA==",
+
+    "server" : true,
+    "ui" : true,
+
+    "enable_debug": true,
+    "log_level": "INFO",
+
+    "bootstrap_expect": 1,
+
+    "rejoin_after_leave": true,
+    "retry_interval": "30s"
+}

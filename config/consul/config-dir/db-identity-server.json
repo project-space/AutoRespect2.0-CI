@@ -1,7 +1,7 @@
 {
     "service": {
-        "name": "identity-server",
+        "name": "db-identity-server",
         "tags": ["database"],
-        "port": 80
+        "address": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=AutoRespect.IdentityServer;Integrated Security=SSPI;"     
     }
 }
