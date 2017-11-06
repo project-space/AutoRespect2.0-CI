@@ -1,0 +1,8 @@
+{
+    "service": {
+        "name": "ms-identity-server",
+        "tags": ["microservice"],
+        "address": "http://localhost",
+        "port": 3846
+    }
+}

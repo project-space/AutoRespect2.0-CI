@@ -1,0 +1,8 @@
+{
+    "service": {
+        "name": "ms-resource-server",
+        "tags": ["microservice"],
+        "address": "http://localhost",
+        "port": 80
+    }
+}
